@@ -29,7 +29,7 @@ void NVIC_voidEnableInterrupt(IRQ_Number_t IRQ_Number)
 {
     uint8_t RegNum = IRQ_Number / 32;
     uint8_t BitNum = IRQ_Number % 32;
-    NVIC_BASE_ADDRESS->ISER[RegNum] = (1 << BitNum);
+    NVIC->ISER[RegNum] = (1 << BitNum);
 }
 
 /*==============================================================================================================================================
@@ -42,7 +42,7 @@ void NVIC_voidDisableInterrupt(IRQ_Number_t IRQ_Number)
 {
     uint8_t RegNum = IRQ_Number / 32;
     uint8_t BitNum = IRQ_Number % 32;
-    NVIC_BASE_ADDRESS->ICER[RegNum] = (1 << BitNum);
+    NVIC->ICER[RegNum] = (1 << BitNum);
 }
 /*==============================================================================================================================================
  *@fn NVIC_voidSetBendingFlag
@@ -55,7 +55,7 @@ void NVIC_voidSetBendingFlag(IRQ_Number_t IRQ_Number)
 {
     uint8_t RegNum = IRQ_Number / 32;
     uint8_t BitNum = IRQ_Number % 32;
-    NVIC_BASE_ADDRESS->ISPR[RegNum] = (1 << BitNum);
+    NVIC->ISPR[RegNum] = (1 << BitNum);
 }
 /*==============================================================================================================================================
  *@fn NVIC_voidClearBendingFlag
@@ -67,7 +67,7 @@ void NVIC_voidClearBendingFlag(IRQ_Number_t IRQ_Number)
 {
     uint8_t RegNum = IRQ_Number / 32;
     uint8_t BitNum = IRQ_Number % 32;
-    NVIC_BASE_ADDRESS->ICPR[RegNum] = (1 << BitNum);
+    NVIC->ICPR[RegNum] = (1 << BitNum);
 }
 /*==============================================================================================================================================
  *@fn NVIC_u8GetActiveFlag
@@ -80,7 +80,7 @@ uint8_t NVIC_u8GetActiveFlag(IRQ_Number_t IRQ_Number)
 {
     uint8_t RegNum = IRQ_Number / 32;
     uint8_t BitNum = IRQ_Number % 32;
-    return ((NVIC_BASE_ADDRESS->IABR[RegNum] >> BitNum) & 1);
+    return ((NVIC->IABR[RegNum] >> BitNum) & 1);
 }
 
 /*==============================================================================================================================================
@@ -92,5 +92,5 @@ uint8_t NVIC_u8GetActiveFlag(IRQ_Number_t IRQ_Number)
  *==============================================================================================================================================*/
 void NVIC_voidSetPriority(IRQ_Number_t IRQ_Number, uint8_t Copy_u8Priority)
 {
-    NVIC_BASE_ADDRESS->IPR[IRQ_Number] = Copy_u8Priority;
+    NVIC->IPR[IRQ_Number] = Copy_u8Priority;
 }

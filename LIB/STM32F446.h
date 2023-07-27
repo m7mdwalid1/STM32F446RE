@@ -172,8 +172,9 @@ typedef struct
 
 /*******************  NVIC BASE Address Definition    *********************/
 
-#define NVIC_BASE_ADDRESS ((NVIC_Reg_t *)0xE000E100UL)
+#define NVIC_BASE_ADDRESS 0xE000E100UL
 
+#define NVIC ((NVIC_Reg_t *)NVIC_BASE_ADDRESS)
 typedef struct
 {
   volatile uint32_t ISER[8];
@@ -215,4 +216,30 @@ typedef struct
   volatile uint32_t BFAR;
   volatile uint32_t AFSR;
 } SCB_Reg_t;
+/*******************  SYSCFG BASE Address Definition    *********************/
+#define SYSCFG_BASE_ADDRESS 0x40013800UL
+#define SYSCFG ((SYSCFG_Reg_t *)SYSCFG_BASE_ADDRESS)
+typedef struct
+{
+  volatile uint32_t MEMRMP;
+  volatile uint32_t PMC;
+  volatile uint32_t EXTICR[4];
+  volatile uint32_t RESERVED0[2];
+  volatile uint32_t CMPCR;
+  volatile uint32_t RESERVED1[2];
+  volatile uint32_t CFGR;
+} SYSCFG_Reg_t;
+
+/*******************  EXTI BASE Address Definition    *********************/
+#define EXTI_BASE_ADDRESS 0x40013C00UL
+#define EXTI ((EXTI_Reg_t *)EXTI_BASE_ADDRESS)
+typedef struct
+{
+  volatile uint32_t IMR;
+  volatile uint32_t EMR;
+  volatile uint32_t RTSR;
+  volatile uint32_t FTSR;
+  volatile uint32_t SWIER;
+  volatile uint32_t PR;
+} EXTI_Reg_t;
 #endif /* STM32F446_H_ */
