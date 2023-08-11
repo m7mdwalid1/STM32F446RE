@@ -242,4 +242,125 @@ typedef struct
   volatile uint32_t SWIER;
   volatile uint32_t PR;
 } EXTI_Reg_t;
+
+/*******************  DMA BASE Address Definition    *********************/
+
+#define DMA1_BASE_ADDRESS 0x40026000UL
+#define DMA2_BASE_ADDRESS 0x40026400UL
+
+#define DMA1 ((DMA_Reg_t *)DMA1_BASE_ADDRESS)
+#define DMA2 ((DMA_Reg_t *)DMA2_BASE_ADDRESS)
+typedef struct
+{
+  volatile uint32_t SCR;
+  volatile uint32_t SNDTR;
+  volatile uint32_t SPAR;
+  volatile uint32_t SM0AR;
+  volatile uint32_t SM1AR;
+  volatile uint32_t SFCR;
+} DMA_Stream_Reg_t;
+typedef struct
+{
+  volatile uint32_t ISR[2];
+  volatile uint32_t IFCR[2];
+  DMA_Stream_Reg_t * STREAM[8];
+} DMA_Reg_t;
+
+typedef enum
+{
+  FEIFO0 = 0,  // FIFO error interrupt flag for stream 0
+  DMEIF0 = 2,  // Direct mode error interrupt flag for stream 0
+  TEIF0 = 3,   // Transfer error interrupt flag for stream 0
+  HTIF0 = 4,   // Half transfer interrupt flag for stream 0
+  TCIF0 = 5,   // Transfer complete interrupt flag for stream 0
+  FEIFO1 = 6,  // FIFO error interrupt flag for stream 1
+  DMEIF1 = 8,  // Direct mode error interrupt flag for stream 1
+  TEIF1 = 9,   // Transfer error interrupt flag for stream 1
+  HTIF1 = 10,  // Half transfer interrupt flag for stream 1
+  TCIF1 = 11,  // Transfer complete interrupt flag for stream 1
+  FEIFO2 = 16, // FIFO error interrupt flag for stream 2
+  DMEIF2 = 18, // Direct mode error interrupt flag for stream 2
+  TEIF2 = 19,  // Transfer error interrupt flag for stream 2
+  HTIF2 = 20,  // Half transfer interrupt flag for stream 2
+  TCIF2 = 21,  // Transfer complete interrupt flag for stream 2
+  FEIFO3 = 22, // FIFO error interrupt flag for stream 3
+  DMEIF3 = 24, // Direct mode error interrupt flag for stream 3
+  TEIF3 = 25,  // Transfer error interrupt flag for stream 3
+  HTIF3 = 26,  // Half transfer interrupt flag for stream 3
+  TCIF3 = 27,  // Transfer complete interrupt flag for stream 3
+} DMA_LISR_BITS_t;
+
+typedef enum
+{
+  FEIF4 = 0,   // FIFO error interrupt flag for stream 4
+  DMEIF4 = 2,  // Direct mode error interrupt flag for stream 4
+  TEIF4 = 3,   // Transfer error interrupt flag for stream 4
+  HTIF4 = 4,   // Half transfer interrupt flag for stream 4
+  TCIF4 = 5,   // Transfer complete interrupt flag for stream 4
+  FEIF5 = 6,   // FIFO error interrupt flag for stream 5
+  DMEIF5 = 8,  // Direct mode error interrupt flag for stream 5
+  TEIF5 = 9,   // Transfer error interrupt flag for stream 5
+  HTIF5 = 10,  // Half transfer interrupt flag for stream 5
+  TCIF5 = 11,  // Transfer complete interrupt flag for stream 5
+  FEIF6 = 16,  // FIFO error interrupt flag for stream 6
+  DMEIF6 = 18, // Direct mode error interrupt flag for stream 6
+  TEIF6 = 19,  // Transfer error interrupt flag for stream 6
+  HTIF6 = 20,  // Half transfer interrupt flag for stream 6
+  TCIF6 = 21,  // Transfer complete interrupt flag for stream 6
+  FEIF7 = 22,  // FIFO error interrupt flag for stream 7
+  DMEIF7 = 24, // Direct mode error interrupt flag for stream 7
+  TEIF7 = 25,  // Transfer error interrupt flag for stream 7
+  HTIF7 = 26,  // Half transfer interrupt flag for stream 7
+  TCIF7 = 27,  // Transfer complete interrupt flag for stream 7
+} DMA_HISR_BITS_t;
+
+typedef enum
+{
+  EN = 0,      // DMA stream enable
+  DMEIE = 1,   // Direct mode error interrupt enable
+  TEIE = 2,    // Transfer error interrupt enable
+  HTIE = 3,    // Half transfer interrupt enable
+  TCIE = 4,    // Transfer complete interrupt enable
+  PFCTRL = 5,  // Peripheral flow controller
+  DIR = 6,     // Data transfer direction
+  CIRC = 8,    // Circular mode
+  PINC = 9,    // Peripheral increment mode
+  MINC = 10,   // Memory increment mode
+  PSIZE = 11,  // Peripheral data size
+  MSIZE = 13,  // Memory data size
+  PINCOS = 15, // Peripheral increment offset size
+  PL = 16,     // Priority level
+  DBM = 18,    // Double buffer mode  HINT: This bit can be written only if EN = 0
+  CT = 19,     // Current target (only in double buffer mode) HINT: This bit can be written only if EN = 0
+  PBURST = 21, // Peripheral burst transfer configuration
+  MBURST = 23, // Memory burst transfer configuration
+  CHSEL = 25,  // Channel selection
+} DMA_SCR_BITS_t;
+typedef enum
+{
+  NDT = 0 // Number of data items to transfer
+} DMA_SNDTR_BITS_t;
+
+typedef enum
+{
+  PAR = 0 // Peripheral address
+} DMA_SPAR_BITS_t;
+typedef enum
+{
+  M0A = 0 // Memory 0 address
+} DMA_SM0AR_BITS_t;
+
+typedef enum
+{
+  M1A = 0 // Memory 0 address
+} DMA_SM1AR_BITS_t;
+
+typedef enum
+{
+  FTH = 0,   // FIFO threshold selection
+  DMDIS = 2, // Direct mode disable
+  FS = 3,    // FIFO status
+  FEIE = 7,  // FIFO error interrupt enable
+} DMA_SFCR_BITS_t;
+
 #endif /* STM32F446_H_ */
