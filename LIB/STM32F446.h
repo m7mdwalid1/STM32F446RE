@@ -263,7 +263,7 @@ typedef struct
 {
   volatile uint32_t ISR[2];
   volatile uint32_t IFCR[2];
-  DMA_Stream_Reg_t * STREAM[8];
+  DMA_Stream_Reg_t *STREAM[8];
 } DMA_Reg_t;
 
 typedef enum
@@ -363,4 +363,115 @@ typedef enum
   FEIE = 7,  // FIFO error interrupt enable
 } DMA_SFCR_BITS_t;
 
+/*******************  USART BASE Address Definition    *********************/
+
+#define USART1_BASE_ADDRESS 0x40011000UL
+
+#define USART2_BASE_ADDRESS 0x40004400UL
+
+#define USART3_BASE_ADDRESS 0x40004800UL
+
+#define UART4_BASE_ADDRESS 0x40004C00UL
+
+#define UART5_BASE_ADDRESS 0x40005000UL
+
+#define USART6_BASE_ADDRESS 0x40011400UL
+
+#define USART1 ((USART_Reg_t *)USART1_BASE_ADDRESS)
+
+#define USART2 ((USART_Reg_t *)USART2_BASE_ADDRESS)
+
+#define USART3 ((USART_Reg_t *)USART3_BASE_ADDRESS)
+
+#define UART4 ((USART_Reg_t *)UART4_BASE_ADDRESS)
+
+#define UART5 ((USART_Reg_t *)UART5_BASE_ADDRESS)
+
+#define USART6 ((USART_Reg_t *)USART6_BASE_ADDRESS)
+
+/*******************  USART Register Definition    *********************/
+typedef struct
+{
+  volatile uint32_t SR;   // Status register
+  volatile uint32_t DR;   // Data register
+  volatile uint32_t BRR;  // Baud rate register
+  volatile uint32_t CR1;  // Control register 1
+  volatile uint32_t CR2;  // Control register 2
+  volatile uint32_t CR3;  // Control register 3
+  volatile uint32_t GTPR; // Guard time and prescaler register
+} USART_Reg_t;
+
+typedef enum
+{
+  SR_PE = 0,   // Parity error
+  SR_FE = 1,   // Framing error
+  SR_NE = 2,   // Noise error flag
+  SR_ORE = 3,  // Overrun error
+  SR_IDLE = 4, // IDLE line detected
+  SR_RXNE = 5, // Read data register not empty
+  SR_TC = 6,   // Transmission complete
+  SR_TXE = 7,  // Transmit data register empty
+  SR_LBD = 8,  // LIN break detection flag
+  SR_CTS = 9,  // CTS flag
+} USART_SR_BITS_t;
+
+typedef enum
+{
+  BRR_DIV_Fraction = 0, // fraction of USARTDIV
+  BRR_DIV_Mantissa = 4, // mantissa of USARTDIV
+} USART_BRR_BITS_t;
+
+typedef enum
+{
+  CR1_SBK = 0,    // Send break
+  CR1_RWU = 1,    // Receiver wakeup
+  CR1_RE = 2,     // Receiver enable
+  CR1_TE = 3,     // Transmitter enable
+  CR1_IDLEIE = 4, // IDLE interrupt enable
+  CR1_RXNEIE = 5, // RXNE interrupt enable
+  CR1_TCIE = 6,   // Transmission complete interrupt enable
+  CR1_TXEIE = 7,  // TXE interrupt enable
+  CR1_PEIE = 8,   // PE interrupt enable
+  CR1_PS = 9,     // Parity selection
+  CR1_PCE = 10,   // Parity control enable
+  CR1_WAKE = 11,  // Wakeup method
+  CR1_M = 12,     // Word length
+  CR1_UE = 13,    // USART enable
+  CR1_OVER8 = 15, // Oversampling mode
+} USART_CR1_BITS_t;
+
+typedef enum
+{
+  CR2_ADD = 0,    // Address of the USART node
+  CR2_LBDL = 5,   // LIN break detection length
+  CR2_LBDIE = 6,  // LIN break detection interrupt enable
+  CR2_LBCL = 8,   // Last bit clock pulse
+  CR2_CPHA = 9,   // Clock phase
+  CR2_CPOL = 10,  // Clock polarity
+  CR2_CLKEN = 11, // Clock enable
+  CR2_STOP = 12,  // STOP bits
+  CR2_LINEN = 14, // LIN mode enable
+} USART_CR2_BITS_t;
+
+typedef enum
+{
+  CR3_EIE = 0,     // Error interrupt enable
+  CR3_IREN = 1,    // IrDA mode enable
+  CR3_IRLP = 2,    // IrDA low-power
+  CR3_HDSEL = 3,   // Half-duplex selection
+  CR3_NACK = 4,    // Smartcard NACK enable
+  CR3_SCEN = 5,    // Smartcard mode enable
+  CR3_DMAR = 6,    // DMA enable receiver
+  CR3_DMAT = 7,    // DMA enable transmitter
+  CR3_RTSE = 8,    // RTS enable
+  CR3_CTSE = 9,    // CTS enable
+  CR3_CTSIE = 10,  // CTS interrupt enable
+  CR3_ONEBIT = 11, // One sample bit method enable
+} USART_CR3_BITS_t;
+
+typedef enum
+{
+  GTPR_PSC = 0, // Prescaller Value
+  GTPR_GT = 8,  // Guard time value
+} USART_GTPR_BITS_t;
 #endif /* STM32F446_H_ */
