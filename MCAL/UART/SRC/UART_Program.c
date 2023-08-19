@@ -303,7 +303,7 @@ void USART1_IRQHandler(void)
 	/* Comming from UART_ReciveBufferIT*/
 	if ((UART_ReadFlag(UART_1, RXNE_Flage) == 1) && UART_RecieveBufferFlag[UART_1] == 1)
 	{
-		static uint8_t FlagCounter = 0;
+		static uint8_t FlagCounter = 1;
 
 		/* Reading Data */
 		UART_RecievedBufferIT[UART_1][FlagCounter] = UART[UART_1]->DR;
@@ -395,7 +395,7 @@ void USART2_IRQHandler(void)
 	/* Comming from UART_ReciveBufferIT*/
 	if ((UART_ReadFlag(UART_2, RXNE_Flage) == 1) && UART_RecieveBufferFlag[UART_2] == 1)
 	{
-		static uint8_t FlagCounter = 0;
+		static uint8_t FlagCounter = 1;
 
 		/* Reading Data */
 		UART_RecievedBufferIT[UART_2][FlagCounter] = UART[UART_2]->DR;
@@ -485,7 +485,7 @@ void USART3_IRQHandler(void)
 	/* Comming from UART_ReciveBufferIT*/
 	if ((UART_ReadFlag(UART_3, RXNE_Flage) == 1) && UART_RecieveBufferFlag[UART_3] == 1)
 	{
-		static uint8_t FlagCounter = 0;
+		static uint8_t FlagCounter = 1;
 
 		/* Reading Data */
 		UART_RecievedBufferIT[UART_3][FlagCounter] = UART[UART_3]->DR;
@@ -575,7 +575,7 @@ void UART4_IRQHandler(void)
 	/* Comming from UART_ReciveBufferIT*/
 	if ((UART_ReadFlag(UART_4, RXNE_Flage) == 1) && UART_RecieveBufferFlag[UART_4] == 1)
 	{
-		static uint8_t FlagCounter = 0;
+		static uint8_t FlagCounter = 1;
 
 		/* Reading Data */
 		UART_RecievedBufferIT[UART_4][FlagCounter] = UART[UART_4]->DR;
@@ -666,7 +666,7 @@ void UART5_IRQHandler(void)
 	/* Comming from UART_ReciveBufferIT*/
 	if ((UART_ReadFlag(UART_5, RXNE_Flage) == 1) && UART_RecieveBufferFlag[UART_5] == 1)
 	{
-		static uint8_t FlagCounter = 0;
+		static uint8_t FlagCounter = 1;
 
 		/* Reading Data */
 		UART_RecievedBufferIT[UART_5][FlagCounter] = UART[UART_5]->DR;
@@ -757,7 +757,7 @@ void USART6_IRQHandler(void)
 	/* Comming from UART_ReciveBufferIT*/
 	if ((UART_ReadFlag(UART_6, RXNE_Flage) == 1) && UART_RecieveBufferFlag[UART_6] == 1)
 	{
-		static uint8_t FlagCounter = 0;
+		static uint8_t FlagCounter = 1;
 
 		/* Reading Data */
 		UART_RecievedBufferIT[UART_6][FlagCounter] = UART[UART_6]->DR;
