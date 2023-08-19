@@ -58,34 +58,34 @@ void DMA_Init(DMA_ChannelConfig_t *DMA_CONFIG)
 {
 	/* Channel Selection */
 	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR &= ~(ThreeBitMasking << CHSEL);
-	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ~((DMA_CONFIG->ChannelSelection) << CHSEL);
+	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ((DMA_CONFIG->ChannelSelection) << CHSEL);
 
 	/*Setting Channel Priority*/
 	DMA_SetStreamPriority(DMA_CONFIG);
 
 	/* Setting memory data size */
 	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR &= ~(TwoBitMasking << MSIZE);
-	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ~((DMA_CONFIG->MeomryDataSize) << MSIZE);
+	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ((DMA_CONFIG->MeomryDataSize) << MSIZE);
 
 	/* Setting Periphral data size */
 	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR &= ~(TwoBitMasking << PSIZE);
-	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ~((DMA_CONFIG->PeripheralDataSize) << PSIZE);
+	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ((DMA_CONFIG->PeripheralDataSize) << PSIZE);
 
 	/* Setting memory increment mode */
 	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR &= ~(OneBitMasking << MINC);
-	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ~((DMA_CONFIG->MeomryIncreamentMode) << MINC);
+	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ((DMA_CONFIG->MeomryIncreamentMode) << MINC);
 
 	/* Setting Periphral increment mode */
 	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR &= ~(OneBitMasking << PINC);
-	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ~((DMA_CONFIG->PeripheralIncreamentMode) << MINC);
+	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ((DMA_CONFIG->PeripheralIncreamentMode) << MINC);
 
 	/* Setting data transfer direction */
 	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR &= ~(TwoBitMasking << DIR);
-	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ~((DMA_CONFIG->DataDirection) << DIR);
+	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ((DMA_CONFIG->DataDirection) << DIR);
 
 	/* Seeting peripheral flow controller */
 	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR &= ~(OneBitMasking << PFCTRL);
-	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ~((DMA_CONFIG->FlowController) << PFCTRL);
+	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ((DMA_CONFIG->FlowController) << PFCTRL);
 }
 
 /*==============================================================================================================================================
@@ -150,7 +150,7 @@ void DMA_StartTransfer(DMA_ChannelConfig_t *DMA_CONFIG, uint32_t Local_u32Source
 	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SNDTR = Local_u16DataLength;
 	/* Enabling Stream */
 	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR &= ~((OneBitMasking) << EN);
-	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ~((OneBitMasking) << EN);
+	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ((OneBitMasking) << EN);
 	/* Waiting For Transfer Complete Flag */
 	while (DMA_CheckingInterruptFlagSource(DMA_CONFIG->DMA_Number, DMA_CONFIG->StreamNumber, TCIF) == 0)
 		;
@@ -186,7 +186,7 @@ void DMA_StartTransfer_IT(DMA_ChannelConfig_t *DMA_CONFIG, uint32_t Local_u32Sou
 	DMA_SetStreamInteruptConfig(DMA_CONFIG);
 	/* Enabling Stream */
 	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR &= ~((OneBitMasking) << EN);
-	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ~((OneBitMasking) << EN);
+	DMA[DMA_CONFIG->DMA_Number]->STREAM[DMA_CONFIG->StreamNumber]->SCR |= ((OneBitMasking) << EN);
 }
 /*==============================================================================================================================================
  *@fn  DMA_CheckingInterruptFlagSource
